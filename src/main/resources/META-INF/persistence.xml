@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <!--<persistence-unit name="hibernate-ogm-test" transaction-type="RESOURCE_LOCAL">-->
+    <persistence-unit name="hibernate-ogm-test" transaction-type="RESOURCE_LOCAL">
+        <!-- Use Hibernate OGM provider: configuration will be transparent -->
+        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+        <!--<properties>-->
+            <!--<property name="hibernate.ogm.cassandra.default_keyspace" value="test"/>-->
+            <!--<property name="hibernate.ogm.cassandra.url" value="jdbc:cassandra://localhost:9160"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+        <!--</properties>-->
+    </persistence-unit>
+
+
+    <persistence-unit name="hibernate-ogm-test-infinispan" transaction-type="JTA">
+        <!-- Use Hibernate OGM provider: configuration will be transparent -->
+        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+        <properties>
+            <!--<property name="hibernate.transaction.manager_lookup_class"-->
+                      <!--value="org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup" />-->
+
+            <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTSStandaloneTransactionManagerLookup"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
